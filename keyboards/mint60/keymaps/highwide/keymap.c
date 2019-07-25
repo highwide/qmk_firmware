@@ -37,22 +37,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,      KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS,  \
     MO(1),     KC_A,    KC_S,    KC_D,    KC_F,    KC_G,      KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,        KC_ENT,   \
     KC_LSFT,       KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,      KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,   KC_UP,  MO(2),   \
-    KC_ESC,    KC_LCTL,    KC_LALT,    KC_xEISU,    KC_LGUI,        KC_SPC,              KC_xKANA,  KC_RGUI, KC_LEFT, KC_DOWN, KC_RGHT \`
+    KC_ESC,    KC_LCTL,    KC_LALT,    KC_LANG2,    KC_LGUI,        KC_SPC,              KC_LANG1,  KC_RGUI, KC_LEFT, KC_DOWN, KC_RGHT \`
   ),
-  // with left Fn
   [1] = LAYOUT( \
     XXXXXXX,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,     KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,    XXXXXXX, \
-    XXXXXXX,   XXXXXXX,  LCTL(KC_W), LCTL(KC_E), XXXXXXX, LCTL(KC_T),   XXXXXXX, LCTL(KC_U), KC_TAB, XXXXXXX, KC_UP, KC_ESC, XXXXXXX, XXXXXXX, \
-    XXXXXXX,     LCTL(KC_A), XXXXXXX, LCTL(KC_D), KC_RGHT, XXXXXXX,   XXXXXXX, XXXXXXX, LCTL(KC_K), LCTL(KC_L), XXXXXXX, XXXXXXX,        XXXXXXX, \
+    XXXXXXX,   XXXXXXX,  LCTL(KC_W), KC_END, XXXXXXX, LCTL(KC_T),   XXXXXXX, LCTL(KC_U), KC_TAB, XXXXXXX, KC_UP, KC_ESC, XXXXXXX, XXXXXXX, \
+    XXXXXXX,     KC_HOME, XXXXXXX, LCTL(KC_D), KC_RGHT, XXXXXXX,   KC_BSPC, XXXXXXX, LCTL(KC_K), LCTL(KC_L), XXXXXXX, XXXXXXX,        XXXXXXX, \
     _______,       XXXXXXX, XXXXXXX, LCTL(KC_C), XXXXXXX, KC_LEFT,   KC_DOWN, KC_ENT, XXXXXXX, XXXXXXX, XXXXXXX, _______, KC_PGUP, _______, \
-    XXXXXXX,   _______,    _______,    _______,    XXXXXXX,       XXXXXXX, XXXXXXX, XXXXXXX,                   KC_HOME, KC_PGDN, KC_END \
+    XXXXXXX,   _______,    _______,    _______,    XXXXXXX,       XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, KC_PGDN, XXXXXXX \
   )
-  // with right Fn
   [2] = LAYOUT( \
-    KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,     KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,    KC_DEL, \
-    RGB_TOG,   RGBRST,  RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-    XXXXXXX,     RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,        XXXXXXX, \
-    _______,       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, KC_PGUP, _______, \
+    XXXXXXX,  RGB_TOG,   RGBRST,   RGB_HUI,   RGB_SAI,   RGB_VAI,     RGB_MOD,   RGB_HUD,   RGB_SAD,   RGB_VAD,   XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX, \
+    XXXXXXX,   KC_MRWD,  KC_MPLY, KC_MFFD, XXXXXXX, XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+    XXXXXXX,     KC__VOLDOWN, KC__VOLUP, KC__MUTE, XXXXXXX, XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX, LCTL(LGUI(KC_Q)), XXXXXXX, XXXXXXX,        XXXXXXX, \
+    _______,       KC_BRIU, KC_BRID, XXXXXXX, XXXXXXX, XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, KC_PGUP, _______, \
     XXXXXXX,   _______,    _______,    _______,    XXXXXXX,       XXXXXXX, XXXXXXX, XXXXXXX,                   KC_HOME, KC_PGDN, KC_END \
   )
 };
@@ -71,30 +69,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           RGB_current_mode = rgblight_config.mode;
         }
       #endif
-      break;
-    case KC_xEISU:
-      if (record->event.pressed) {
-        if(keymap_config.swap_lalt_lgui==false){
-          register_code(KC_LANG2);
-        }else{
-          SEND_STRING(SS_LALT("`"));
-        }
-      } else {
-        unregister_code(KC_LANG2);
-      }
-      return false;
-      break;
-    case KC_xKANA:
-      if (record->event.pressed) {
-        if(keymap_config.swap_lalt_lgui==false){
-          register_code(KC_LANG1);
-        }else{
-          SEND_STRING(SS_LALT("`"));
-        }
-      } else {
-        unregister_code(KC_LANG1);
-      }
-      return false;
       break;
   }
   return true;
