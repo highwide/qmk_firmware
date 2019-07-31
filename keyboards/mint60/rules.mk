@@ -57,7 +57,7 @@ OPT_DEFS += -DBOOTLOADER_SIZE=4096
 #
 BOOTMAGIC_ENABLE = no      # Virtual DIP switch configuration(+1000)
 MOUSEKEY_ENABLE = no       # Mouse keys(+4700)
-EXTRAKEY_ENABLE = no       # Audio control and System control(+450)
+EXTRAKEY_ENABLE = yes      # Audio control and System control(+450)
 CONSOLE_ENABLE = no        # Console for debug(+400)
 COMMAND_ENABLE = no        # Commands for debug and configuration
 # Do not enable SLEEP_LED_ENABLE. it uses the same timer as BACKLIGHT_ENABLE
@@ -74,4 +74,4 @@ HD44780_ENABLE = no 		# Enable support for HD44780 based LCDs (+400)
 
 CUSTOM_MATRIX = yes
 USE_I2C = yes
-RGBLIGHT_ENABLE = yes       # Enable WS2812 RGB underlight. 
+RGBLIGHT_ENABLE = yes       # Enable WS2812 RGB underlight.
