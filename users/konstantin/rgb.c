@@ -1,3 +1,19 @@
+/* Copyright 2019-2021 Konstantin Đorđević <vomindoraan@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include "rgb.h"
 
 #ifdef RGBLIGHT_EFFECT_BREATHING
@@ -20,6 +36,7 @@ const uint8_t PROGMEM RGBLED_SNAKE_INTERVALS[] = { 20, 50, 100 };
 const uint8_t PROGMEM RGBLED_KNIGHT_INTERVALS[] = { 20, 50, 100 };
 #endif
 
-const HSV GODSPEED_BLUE    = { .h = 198, .s = 68,  .v = 255 };
-const HSV GODSPEED_YELLOW  = { .h = 27,  .s = 153, .v = 255 };
-const HSV MODERN_DOLCH_RED = { .h = 252, .s = 255, .v = 144 };
+const HSV godspeed_blue     = { GODSPEED_BLUE };
+const HSV godspeed_yellow   = { GODSPEED_YELLOW };
+const HSV modern_dolch_cyan = { MODERN_DOLCH_CYAN };
+const HSV modern_dolch_red  = { MODERN_DOLCH_RED };
